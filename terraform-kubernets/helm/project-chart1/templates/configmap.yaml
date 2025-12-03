@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-makefile
+data:
+  Makefile: |
+    {{ .Files.Get "files/Makefile" | indent 4 }}

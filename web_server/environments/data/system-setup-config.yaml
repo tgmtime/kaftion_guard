@@ -1,0 +1,27 @@
+system-config-info:
+  system-tag: "production"
+  system-version: "1.0.0"
+  system-pub-key-path: "/etc/keys/public.pem"
+  system-name: "MyApp"
+  system-description: "This is a sample application configuration."
+  config-path: "/etc/myapp/config.yaml"
+  log-level: "info"
+  enable-debug: true
+  max-connections: 100
+  timeout-seconds: 30
+  database-url: "postgres://user:pass@localhost:5432/dbname"
+  api-endpoint: "https://api.myapp.com"
+  allowed-ips:
+    - "192.168.1.1"
+    - "10.0.0.2"
+  feature-flags:
+    new-ui: true
+    beta-mode: false
+
+status-info:
+  status: true
+  created-at: 1708176000
+  active-at: 1708180000
+  expires-at: 1710000000
+  updated-at: 1708200000
+  description: "Configuration is active and running."

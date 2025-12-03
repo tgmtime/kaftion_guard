@@ -1,0 +1,15 @@
+1. sistemin temel env yönelimlerini ve imzasını belirtir.
+    1.1.sistemin temel env
+        - sistem pub key path    
+        - x developer pub key path
+        - access data path // x devepoler ait yetki datası
+        - sistem config data base path
+        - task data path  // sistem üzerinde kullanılacak environment path'leri tash olarak tanımlanarak developer bazında .env tanımlama yetki kontrolü sağlanır.
+        random zamanlarda ve random pathlerde dinamik olarak tanımlandığı için accessdata içeriği tahmin edilemez.
+        - DataStatus //var olan sistem temel env geçerlilik süresi belirtilir.
+  
+    1.2.sistemin temel env imzası
+        - İmza doğrulaması sistem temel env içindeki sistem pub key path bulunan pub key kullanılır.
+        - Random zamanlarda random sistem-pub-key path key belirlenerek güvenli şekilde sistem temel env dinamik olarak tanımlanmış olur.
+        - ed25519 public/private key yönetimiyle dağıtık sistemlerde birden fazla yerde private key sağlamak gerekmeden private key yönetimi
+        tek bir yerden sağlamak daha güvenli ve daha rahat yönetilebilir.

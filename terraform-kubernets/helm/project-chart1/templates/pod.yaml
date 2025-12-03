@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}-makefile-runner
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  containers:
+    - name: make-runner
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      command:
+        - /bin/sh
+        - "-c"
+        - |
+          cd $(dirname {{ .Values.makefile.containerPath }}) && make -f {{ .Values.makefile.containerPath }} {{ .Values.makefile.target }}
+      volumeMounts:
+        - name: makefile-volume
+          mountPath: "{{ .Values.makefile.containerPath | dirname }}"
+          subPath: "{{ .Values.makefile.containerPath | basename }}"
+  volumes:
+    - name: makefile-volume
+      hostPath:
+        path: "{{ .Values.makefile.hostPath }}" # Host üzerindeki Makefile path'i
+        type: File
+  restartPolicy: Never
+  resources:
+    limits:
+      cpu: {{ .Values.resources.limits.cpu }}
+      memory: {{ .Values.resources.limits.memory }}
+    requests:
+      cpu: {{ .Values.resources.requests.cpu }}
+      memory: {{ .Values.resources.requests.memory }}
